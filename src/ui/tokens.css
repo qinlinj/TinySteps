@@ -18,7 +18,7 @@
   --clay: #a67c6d;
   --clay-mist: #f0e6e0;
   --hit: 48px;
-  --type-min: 1.125rem;
+  --type-min: 1.125rem; /* 18px at a 16px root */
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --shadow-card: 0 1px 2px rgba(28, 25, 23, 0.04), 0 8px 24px rgba(28, 25, 23, 0.04);
 }

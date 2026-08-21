@@ -8,6 +8,7 @@ export default {
     extend: {
       colors: {
         cream: "#F6F1E8",
+        // Numbered stone stays for leftover classes; DEFAULT/deep come from the Lumen preset.
         stone: {
           DEFAULT: "#E8E0D2",
           deep: "#D4CBBA",

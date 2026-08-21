@@ -1,6 +1,7 @@
 // Shared presentational types for the TinySteps Sprint 1 UI kit.
 // UI copy is Chinese; comments stay English. No store types live here.
 
+/** Self-reported energy / affect. Never labeled 消极. */
 export type Mood = "up" | "ok" | "low";
 
 export type GoalType = "habit" | "project";
@@ -11,6 +12,7 @@ export type ChatRole = "user" | "assistant";
 
 export type GuidedKey = "A" | "B" | "C";
 
+/** One of today's 1-3 visible steps. */
 export interface TodayTask {
   id: string;
   title: string;
@@ -19,12 +21,14 @@ export interface TodayTask {
   status: TaskStatus;
 }
 
+/** Visible chat turn. System / tool messages stay out of this kit. */
 export interface ChatMessage {
   id: string;
   role: ChatRole;
   content: string;
 }
 
+/** A/B/C choice when the mentor offers a smaller next move. */
 export interface GuidedOption {
   id: string;
   key: GuidedKey;
@@ -32,6 +36,7 @@ export interface GuidedOption {
   description?: string;
 }
 
+/** Payload GoalCreator emits. River / Flow persist it. */
 export interface GoalDraft {
   type: GoalType;
   title: string;
