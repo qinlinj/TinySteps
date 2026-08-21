@@ -197,13 +197,13 @@ const TITLE_STOP = new Set([
 ]);
 
 const LEADING_TITLE_JUNK =
-  /^(?:[：:，,。.!\uff01?\uff1f、\-\u2014\uff5e~]|了|的|是|把|一下|一个|一项|一条|一步|一件)+/;
+  /^(?:[：:，,。.!！?？、\-—～~]|了|的|是|把|一下|一个|一项|一条|一步|一件)+/;
 
-const TRAILING_TITLE_JUNK = /[。.!\uff01?\uff1f，,、；;]+$/;
+const TRAILING_TITLE_JUNK = /[。.!！?？，,、；;]+$/;
 
 /** Full-width / CJK punctuation stripped for cue matching only. */
 const MATCH_PUNCT =
-  /[\s\u3000\uff01\uff1f\u3002\uff0c\u3001\uff1b\uff1a""''\u300c\u300d\u300e\u300f\uff08\uff09\u3010\u3011\u300a\u300b\u3008\u3009\u2026\u2014\uff5e\xb7,.!?;:'"()[\]<>{}]/g;
+  /[\s\u3000！？。，、；：""''「」『』（）【】《》〈〉…—～·,.!?;:'"()[\]<>{}]/g;
 
 export function normalizeChatText(text: string): string {
   return text.normalize('NFKC').replace(MATCH_PUNCT, '');
@@ -258,7 +258,7 @@ function moodConfidence(hits: readonly string[], side: 'positive' | 'negative'):
 function cleanExtractedTitle(raw: string): string | undefined {
   let title = raw.trim().replace(/\s+/g, ' ');
   title = title.replace(LEADING_TITLE_JUNK, '').replace(TRAILING_TITLE_JUNK, '').trim();
-  title = title.replace(/^[\u300c\u300e\u201c"']+|[\u300d\u300f\u201d"']+$/g, '').trim();
+  title = title.replace(/^[「『“"']+|[」』”"']+$/g, '').trim();
   if (!title) return undefined;
   if (title.length > 24) title = title.slice(0, 24).trim();
   if (TITLE_STOP.has(title)) return undefined;
