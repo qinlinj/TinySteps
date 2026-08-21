@@ -31,9 +31,10 @@ const defaultSettingsRow = (): SettingsRow => ({
 });
 
 export class TinyStepsDB extends Dexie {
-  settings!: Table<SettingsRow, string>;
-  goals!: Table<Goal, string>;
-  messages!: Table<ChatMessage, string>;
+  // declare: do not emit class fields — they wipe Dexie table bindings.
+  declare settings: Table<SettingsRow, string>;
+  declare goals: Table<Goal, string>;
+  declare messages: Table<ChatMessage, string>;
 
   constructor() {
     super('TinySteps');
