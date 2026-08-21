@@ -475,12 +475,20 @@ export const useStore = create<Store>((set, get) => {
     pendingProbe: null,
 
     hydrate: async () => {
-      const loaded = await loadAppState();
-      set({
-        ...loaded,
-        hydrated: true,
-        creatingGoal: loaded.goals.length === 0,
-      });
+      try {
+        const loaded = await loadAppState();
+        set({
+          ...loaded,
+          hydrated: true,
+          creatingGoal: loaded.goals.length === 0,
+        });
+      } catch (error) {
+        set({
+          hydrated: true,
+          creatingGoal: true,
+          error: friendlyError(error),
+        });
+      }
     },
 
     setApiKey: async (key: string) => {
