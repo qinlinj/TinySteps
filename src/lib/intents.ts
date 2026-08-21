@@ -91,7 +91,7 @@ export const INTENT_CUES = {
     '不知道从哪里开始',
     '不知道怎么办',
     '无从下手',
-    '进行不下友',
+    '进行不下去',
     '没办法开始',
   ],
   replan: [
@@ -197,13 +197,13 @@ const TITLE_STOP = new Set([
 ]);
 
 const LEADING_TITLE_JUNK =
-  /^(?:[：:,，,。.!!！??？、\-—～~]|了|的|是|把|一下|一个|一项|一条|一步|一件)+/;
+  /^(?:[：:，,。.!\uff01?\uff1f、\-\u2014\uff5e~]|了|的|是|把|一下|一个|一项|一条|一步|一件)+/;
 
-const TRAILING_TITLE_JUNK = /[。.!!！??？，,、；;]+$/;
+const TRAILING_TITLE_JUNK = /[。.!\uff01?\uff1f，,、；;]+$/;
 
 /** Full-width / CJK punctuation stripped for cue matching only. */
 const MATCH_PUNCT =
-  /[\s\u3000！？。，、；：""''「」『』（）【】《》〈〉…—～·,.!?;:'"()[\]<>{}]/g;
+  /[\s\u3000\uff01\uff1f\u3002\uff0c\u3001\uff1b\uff1a""''\u300c\u300d\u300e\u300f\uff08\uff09\u3010\u3011\u300a\u300b\u3008\u3009\u2026\u2014\uff5e\xb7,.!?;:'"()[\]<>{}]/g;
 
 export function normalizeChatText(text: string): string {
   return text.normalize('NFKC').replace(MATCH_PUNCT, '');
