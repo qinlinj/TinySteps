@@ -22,7 +22,7 @@ import {
   setActiveGoalId,
   setApiKey as dbSetApiKey,
 } from "./db.ts";
-import { applyProgress, pickTodayTasks, upsertTodaySnapshot } from "./lib/progress.ts";
+import { applyProgress, EMPTY_TODAY_TASKS, pickTodayTasks, upsertTodaySnapshot } from "./lib/progress.ts";
 import { clamp, newId, nowIso, todayDate } from "./lib/ids.ts";
 import { GrokError, callGrok } from "./lib/grok.ts";
 import {
@@ -859,7 +859,9 @@ export function selectActiveGoal(state: Store): Goal | undefined {
   return state.goals.find((goal) => goal.id === state.activeGoalId);
 }
 
+export { EMPTY_TODAY_TASKS };
+
 export function selectTodayTasks(state: Store): AtomicTask[] {
   const goal = selectActiveGoal(state);
-  return goal ? pickTodayTasks(goal) : [];
+  return goal ? pickTodayTasks(goal) : EMPTY_TODAY_TASKS;
 }
