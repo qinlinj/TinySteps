@@ -3,6 +3,9 @@
 
 import type { AtomicTask, Goal, MoodState, Phase, ProgressSnapshot } from '../types';
 
+/** Shared empty list so Zustand selectors can return a stable snapshot. */
+export const EMPTY_TODAY_TASKS: AtomicTask[] = [];
+
 export interface WeightSummary {
   totalWeight: number;
   completedWeight: number;
@@ -55,7 +58,7 @@ export function pickTodayTasks(goal: Pick<Goal, 'phases' | 'currentMood'>): Atom
     !item.isPlaceholder && item.tasks.some((task) => task.status === 'pending'),
   );
 
-  if (!phase) return [];
+  if (!phase) return EMPTY_TODAY_TASKS;
 
   return [...phase.tasks]
     .filter((task) => task.status === 'pending')

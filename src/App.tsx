@@ -13,6 +13,7 @@ import {
   type Mood,
 } from "./ui/index.ts";
 import { MOOD_LABEL, type MoodState } from "./types.ts";
+import { useShallow } from "zustand/react/shallow";
 import { selectActiveGoal, selectTodayTasks, useStore } from "./store.ts";
 
 const UI_TO_STORE: Record<Mood, MoodState> = {
@@ -45,7 +46,8 @@ export default function App() {
   const busy = useStore((state) => state.busy);
   const error = useStore((state) => state.error);
   const goal = useStore(selectActiveGoal);
-  const today = useStore(selectTodayTasks);
+  // pickTodayTasks allocates a new array; useShallow keeps Zustand v5 from looping.
+  const today = useStore(useShallow(selectTodayTasks));
   const completeTask = useStore((state) => state.completeTask);
   const skipTask = useStore((state) => state.skipTask);
   const setMood = useStore((state) => state.setMood);
