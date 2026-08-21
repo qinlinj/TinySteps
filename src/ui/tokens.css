@@ -1,0 +1,85 @@
+/*
+  TinySteps design tokens.
+  Cream paper, stone edges, one sage accent, clay instead of red.
+  Host app should import this once next to Tailwind base.
+*/
+
+:root {
+  --paper: #f7f3ec;
+  --stone: #e8e0d2;
+  --stone-deep: #d4cbba;
+  --ink: #1c1917;
+  --sage: #3f6f5b;
+  --sage-soft: #5a8a74;
+  --sage-mist: #e4ede8;
+  --sage-deep: #2f5545;
+  --moss: #5b7f62;
+  --moss-mist: #e6efe8;
+  --clay: #a67c6d;
+  --clay-mist: #f0e6e0;
+  --hit: 48px;
+  --type-min: 1.125rem;
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --shadow-card: 0 1px 2px rgba(28, 25, 23, 0.04), 0 8px 24px rgba(28, 25, 23, 0.04);
+}
+
+html {
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  background-color: var(--paper);
+  color: var(--ink);
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, "PingFang SC", "Hiragino Sans GB",
+    "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: var(--type-min);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--sage);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
